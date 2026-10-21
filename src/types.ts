@@ -37,3 +37,35 @@ export const SPEED_MS: Record<AnimationSpeed, number> = {
   normal: 900,
   fast: 400,
 };
+
+export interface PointerBadgeInfo {
+  name: string;
+  color: string;
+}
+
+export interface CompareStats {
+  traversals: string;
+  pointerMoves: number;
+  nodeVisits: number;
+  currentLength?: number;
+}
+
+export interface CompareStepState {
+  nodes: ListNode[];
+  hasDummy: boolean;
+  pointerMap: Record<number, PointerBadgeInfo[]>;
+  targetIndex: number;
+  removed: boolean;
+  isBypass: boolean;
+  bypassFromIndex?: number;
+  bypassToIndex?: number;
+  phase: string;
+  description: string;
+  detail: string;
+  stepNumber: number;
+  totalSteps: number;
+  highlightLine: number;
+  codeExplanation: string;
+  stats: CompareStats;
+}
+
