@@ -1,0 +1,155 @@
+@import "tailwindcss";
+
+/* ─── Design Tokens ─────────────────────────────────────── */
+@theme {
+  --color-bg-primary: #0a0e1a;
+  --color-bg-secondary: #111827;
+  --color-bg-card: #151c2e;
+  --color-bg-elevated: #1a2238;
+  --color-border: #1e293b;
+  --color-border-focus: #6366f1;
+  --color-text-primary: #e2e8f0;
+  --color-text-secondary: #94a3b8;
+  --color-text-muted: #64748b;
+  --color-accent: #818cf8;
+  --color-accent-bright: #a78bfa;
+  --color-slow: #22d3ee;
+  --color-fast: #f472b6;
+  --color-dummy: #a78bfa;
+  --color-target: #ef4444;
+  --color-success: #34d399;
+  --color-warning: #fbbf24;
+  --color-error: #f87171;
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+}
+
+/* ─── Base Reset ────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-sans);
+  background-color: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+/* ─── Scrollbar ─────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-bg-primary);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-border);
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-text-muted);
+}
+
+/* ─── Utility animations ───────────────────────────────── */
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes pulse-ring {
+  0%   { box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.5); }
+  70%  { box-shadow: 0 0 0 8px rgba(99, 102, 241, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(99, 102, 241, 0); }
+}
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes gentle-bounce {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-4px); }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.4s ease-out both;
+}
+.animate-slide-up {
+  animation: slide-up 0.5s ease-out both;
+}
+.animate-pulse-ring {
+  animation: pulse-ring 1.5s ease-out infinite;
+}
+.animate-gentle-bounce {
+  animation: gentle-bounce 1.2s ease-in-out infinite;
+}
+
+/* ─── Code blocks ───────────────────────────────────────── */
+pre.code-block {
+  background: var(--color-bg-primary);
+  border: 1px solid var(--color-border);
+  border-radius: 0.75rem;
+  padding: 1.25rem;
+  overflow-x: auto;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  line-height: 1.7;
+  color: var(--color-text-primary);
+}
+
+.code-keyword { color: #c084fc; }
+.code-type    { color: #67e8f9; }
+.code-func    { color: #fbbf24; }
+.code-comment { color: #64748b; font-style: italic; }
+.code-string  { color: #86efac; }
+.code-number  { color: #f9a8d4; }
+
+/* ─── Linked list node visualization ────────────────────── */
+.ll-node {
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.ll-node:hover {
+  transform: translateY(-2px);
+}
+
+.ll-arrow {
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ─── Pointer badge animation ───────────────────────────── */
+@keyframes pointer-appear {
+  from { opacity: 0; transform: translateY(-6px) scale(0.8); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+.pointer-badge {
+  animation: pointer-appear 0.3s ease-out both;
+}
+
+/* ─── Node exit animation ───────────────────────────────── */
+@keyframes node-exit {
+  to { opacity: 0; transform: translateY(30px) scale(0.6); }
+}
+.node-exiting {
+  animation: node-exit 0.5s ease-in forwards;
+}
+
+/* ─── Bypass arrow animation ────────────────────────────── */
+@keyframes bypass-draw {
+  from { stroke-dashoffset: 400; }
+  to   { stroke-dashoffset: 0; }
+}
+.bypass-arrow {
+  stroke-dasharray: 400;
+  animation: bypass-draw 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
